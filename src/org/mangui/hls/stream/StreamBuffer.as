@@ -95,14 +95,16 @@ package org.mangui.hls.stream {
 
         public function dispose() : void {
             flushBuffer();
-            _hls.removeEventListener(HLSEvent.LIVE_LOADING_STALLED, _liveLoadingStalledHandler);
-            _hls.removeEventListener(HLSEvent.PLAYLIST_DURATION_UPDATED, _playlistDurationUpdated);
-            _hls.removeEventListener(HLSEvent.LAST_VOD_FRAGMENT_LOADED, _lastVODFragmentLoadedHandler);
-            _hls.removeEventListener(HLSEvent.AUDIO_TRACK_SWITCH, _audioTrackChange);
-            _hls.removeEventListener(HLSEvent.PLAYBACK_COMPLETE, _playbackComplete);
-            _timer.stop();
-            _fragmentLoader.dispose();
-            _altaudiofragmentLoader.dispose();
+			if(_hls) {
+				_hls.removeEventListener(HLSEvent.LIVE_LOADING_STALLED, _liveLoadingStalledHandler);
+				_hls.removeEventListener(HLSEvent.PLAYLIST_DURATION_UPDATED, _playlistDurationUpdated);
+				_hls.removeEventListener(HLSEvent.LAST_VOD_FRAGMENT_LOADED, _lastVODFragmentLoadedHandler);
+				_hls.removeEventListener(HLSEvent.AUDIO_TRACK_SWITCH, _audioTrackChange);
+				_hls.removeEventListener(HLSEvent.PLAYBACK_COMPLETE, _playbackComplete);
+			}
+            if(_timer) _timer.stop();
+            if(_fragmentLoader) _fragmentLoader.dispose();
+            if(_altaudiofragmentLoader) _altaudiofragmentLoader.dispose();
             _fragmentLoader = null;
             _altaudiofragmentLoader = null;
             _hls = null;

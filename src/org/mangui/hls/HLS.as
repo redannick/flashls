@@ -85,13 +85,13 @@ package org.mangui.hls {
 
         public function dispose() : void {
             this.removeEventListener(HLSEvent.LEVEL_SWITCH, _levelSwitchHandler);
-            _levelLoader.dispose();
-            _altAudioLevelLoader.dispose();
-            _audioTrackController.dispose();
-            _levelController.dispose();
-            _hlsNetStream.dispose_();
-            _statsHandler.dispose();
-            _streamBuffer.dispose();
+            if(_levelLoader) _levelLoader.dispose();
+            if(_altAudioLevelLoader) _altAudioLevelLoader.dispose();
+            if(_audioTrackController) _audioTrackController.dispose();
+            if(_levelController) _levelController.dispose();
+            if(_hlsNetStream) _hlsNetStream.dispose_();
+            if(_statsHandler) _statsHandler.dispose();
+            if(_streamBuffer) _streamBuffer.dispose();
             _levelLoader = null;
             _altAudioLevelLoader = null;
             _audioTrackController = null;
